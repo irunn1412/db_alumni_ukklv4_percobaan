@@ -2,21 +2,21 @@
 session_start();
 include 'koneksi.php';
 
-$error = ""; 
+$error = "";
+
 if (isset($_POST['login'])) {
+
     $username = $_POST['username'];
     $password = $_POST['password'];
 
     $sql = "SELECT * FROM users WHERE username='$username'";
     $result = mysqli_query($conn, $sql);
 
-if (!$result) {
-    die(mysqli_error($conn));
-}
+    $row = mysqli_fetch_assoc($result);
 
-$row = mysqli_fetch_assoc($result);
+    // cek username dan password hash
+    if ($row && password_verify($password, $row['password'])) {
 
-    if ($row && $password == $row['password']) {
         $_SESSION['username'] = $row['username'];
         $_SESSION['role'] = $row['role'];
         $_SESSION['user_id'] = $row['id'];
@@ -26,7 +26,9 @@ $row = mysqli_fetch_assoc($result);
         } else {
             header("Location: dashboard_user.php");
         }
+
         exit;
+
     } else {
         $error = "Login gagal! Username atau password salah.";
     }

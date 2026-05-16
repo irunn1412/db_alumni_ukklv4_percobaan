@@ -1,7 +1,7 @@
 <?php
 include 'koneksi.php';
 
-if (isset($_POST['simpan'])) {
+if (isset($_POST['tambah'])) {
     $nama_lengkap = $_POST['nama_lengkap'];
     $angkatan = $_POST['angkatan'];
     $jurusan = $_POST['jurusan'];
@@ -25,7 +25,7 @@ if (isset($_POST['simpan'])) {
 <head>
     <meta charset="UTF-8">
     <title>Tambah Data Alumni</title>
-    <link rel="stylesheet" type="text/css" href="css/tambah.css">
+    <link rel="stylesheet" href="css/tambha.css">
 </head>
 <body>
     <div class="main-container">
@@ -42,8 +42,6 @@ if (isset($_POST['simpan'])) {
         <option value="Teknik Jaringan Akses Telekomunikasi">Teknik Jaringan Akses Telekomunikasi</option>
     </select>
 
-    <button type="submit" name="simpan">Simpan</button>
-</form>
 
                 <div class="button-group">
                     <button type="submit" name="tambah" class="btn-simpan">Simpan</button>

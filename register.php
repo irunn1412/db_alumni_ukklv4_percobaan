@@ -1,27 +1,34 @@
 <?php
 include 'koneksi.php';
 
+
 if (isset($_POST['register'])) {
     $username = $_POST['username'];
-    $password = $_POST['password']; 
-    $nama_lengkap = $_POST['nama_lengkap'];
+   $password = password_hash($_POST['password'], PASSWORD_DEFAULT); 
+    $nama     = $_POST['nama_lengkap'];
     $angkatan = $_POST['angkatan'];
     $jurusan  = $_POST['jurusan'];
 
-    $sql_users = "INSERT INTO users (username,password,role) VALUES ('$username','$password','user')";
-    if (mysqli_query($conn, $sql_users)) {
-        $user_id = mysqli_insert_id($conn);
+    $sql_users = "INSERT INTO users (username, password, role) 
+              VALUES ('$username', '$password', 'user')";
+   if (mysqli_query($conn, $sql_users)) {
+    // Ambil ID yang baru saja dibuat untuk tabel alumni
+    $user_id = mysqli_insert_id($conn);
 
-        $sql_alumni = "INSERT INTO alumni (nama_lengkap,angkatan,jurusan,user_id)
-                       VALUES ('$nama_lengkap','$angkatan','$jurusan','$user_id')";
-        mysqli_query($conn, $sql_alumni);
+        // Query untuk memasukkan data ke tabel alumni
+    $sql_alumni = "INSERT INTO alumni (nama_lengkap, angkatan, jurusan, user_id) 
+                   VALUES ('$nama', '$angkatan', '$jurusan', '$user_id')";
+    
+    mysqli_query($conn, $sql_alumni);
+}
 
         header("Location: login.php");
         exit();
     } else {
-        echo "Error: " . mysqli_error($conn);
-    }
-}
+            $error = "gagal"; 
+        }
+    
+
 ?>
 
 <!DOCTYPE html>

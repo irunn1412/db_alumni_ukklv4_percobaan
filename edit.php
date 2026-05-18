@@ -8,7 +8,7 @@ if ($_SESSION['role'] != 'admin') {
 }
 
 $id = $_GET['id'];
-$result = mysqli_query($conn, "SELECT * FROM alumni WHERE id='$id'");
+$result = mysqli_query($conn, "SELECT * FROM alumni WHERE id_alumni='$id'");
 $data = mysqli_fetch_assoc($result);
 
 if (isset($_POST['edit'])) {

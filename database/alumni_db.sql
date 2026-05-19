@@ -2,16 +2,16 @@ CREATE DATABASE alumni_dbex;
 USE alumni_db;
 
 -- Tabel users
-CREATE TABLE users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(50) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    role ENUM('admin','user') NOT NULL DEFAULT 'user'
-);
+CREATE TABLE users ( 
+    user_id INT(11) AUTO_INCREMENT PRIMARY KEY, 
+    username VARCHAR(50) NOT NULL, 
+    password VARCHAR(225) NOT NULL, 
+    role ENUM('admin', 'user', '', '') DEFAULT 'user'
+); 
 
 -- Tabel alumni
 CREATE TABLE alumni (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_alumni INT AUTO_INCREMENT PRIMARY KEY,
     nama_lengkap VARCHAR(100) NOT NULL,
     angkatan YEAR NOT NULL,
     jurusan ENUM(
@@ -22,6 +22,14 @@ CREATE TABLE alumni (
     ) NOT NULL,
     user_id INT,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+-- Tabel alumni reja
+CREATE TABLE alumni ( 
+    id_alumni INT(11) AUTO_INCREMENT PRIMARY KEY, 
+    nama VARCHAR(100) NOT NULL, 
+    angkatan YEAR(4) NOT NULL, 
+    jurusan VARCHAR(100) NOT NULL
 );
 
 INSERT INTO users (username,password,role) 

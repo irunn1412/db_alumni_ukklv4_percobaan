@@ -3,10 +3,11 @@ USE alumni_db;
 
 -- Tabel users
 CREATE TABLE users ( 
-    user_id INT(11) AUTO_INCREMENT PRIMARY KEY, 
-    username VARCHAR(50) NOT NULL, 
-    password VARCHAR(225) NOT NULL, 
-    role ENUM('admin', 'user', '', '') DEFAULT 'user'
+id INT AUTO_INCREMENT PRIMARY KEY, 
+username VARCHAR(50), 
+password VARCHAR(255), 
+nama_lengkap VARCHAR(100), 
+role ENUM('admin','user') 
 ); 
 
 -- Tabel alumni

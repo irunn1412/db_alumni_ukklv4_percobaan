@@ -16,7 +16,7 @@ if (isset($_POST['edit'])) {
     $angkatan = $_POST['angkatan'];
     $jurusan  = $_POST['jurusan'];
 
-    $sql = "UPDATE alumni SET nama_lengkap='$nama_lengkap', angkatan='$angkatan', jurusan='$jurusan' WHERE id='$id'";
+    $sql = "UPDATE alumni SET nama_lengkap='$nama_lengkap', angkatan='$angkatan', jurusan='$jurusan' WHERE id_alumni='$id'";
     if (mysqli_query($conn, $sql)) {
         header("Location: dashboard_admin.php");
     } else {
